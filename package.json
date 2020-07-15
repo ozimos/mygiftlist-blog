@@ -13,7 +13,8 @@
     },
     "scripts": {
         "css-build": "node-sass --omit-source-map-url sass/style.scss resources/public/css/style.css",
-        "css-watch": "node-sass --omit-source-map-url sass/style.scss resources/public/css/style.css --watch"
+        "css-watch": "node-sass --omit-source-map-url sass/style.scss resources/public/css/style.css --watch",
+        "dev": "shadow-cljs -A:dev server"
     },
     "author": "Chris O'Donnell",
     "license": "MIT",

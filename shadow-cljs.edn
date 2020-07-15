@@ -1,7 +1,5 @@
-{:deps {:aliases [:dev]}
- :source-paths ["src"]
- :nrepl {:middleware [cider.nrepl/cider-middleware
-                      refactor-nrepl.middleware/wrap-refactor]}
+{:deps {:aliases [:dev :calva-shadow]}
+ :nrepl {}
  :dev-http {8080 "resources/public/"}
  :builds {:dev {:target     :browser
                 :output-dir "resources/public/js"
@@ -11,9 +9,9 @@
                                     :init-fn rocks.mygiftlist.client/init}}
 
                 :closure-defines
-                {rocks.mygiftlist.config/AUTH0_CLIENT_ID "heIlMgUZmvjI3muqPO3Ua5F5VpLgTpM3"
-                 rocks.mygiftlist.config/AUTH0_DOMAIN "mygiftlist-blog.auth0.com"
-                 rocks.mygiftlist.config/AUTH0_AUDIENCE "https://blog.mygiftlist.rocks"
+                {rocks.mygiftlist.config/AUTH0_CLIENT_ID "zWZcog17A7dzUZi23gnDayj4hWRDGubj"
+                 rocks.mygiftlist.config/AUTH0_DOMAIN "dev-0sl7icpa.auth0.com"
+                 rocks.mygiftlist.config/AUTH0_AUDIENCE "https://api.yum-nexus.com"
                  rocks.mygiftlist.config/AUTH0_CONNECTION "Username-Password-Authentication"}
 
                 :devtools   {:watch-dir "resources/public"
