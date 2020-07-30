@@ -1,22 +1,29 @@
 {
-    "name": "mygiftlist",
+    "name": "yum-fulcro",
     "version": "1.0.0",
     "description": "",
     "private": true,
     "devDependencies": {
-        "@auth0/auth0-spa-js": "^1.8.1",
         "node-sass": "^4.14.1",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
         "semantic-ui-react": "^0.88.2",
-        "shadow-cljs": "^2.9.8"
+        "shadow-cljs": "^2.10.15"
     },
     "scripts": {
         "css-build": "node-sass --omit-source-map-url sass/style.scss resources/public/css/style.css",
         "css-watch": "node-sass --omit-source-map-url sass/style.scss resources/public/css/style.css --watch",
-        "dev": "shadow-cljs -A:dev server"
+        "dev": "shadow-cljs -A:dev:test server"
     },
-    "author": "Chris O'Donnell",
+    "author": "Tovieye Ozi",
     "license": "MIT",
-    "dependencies": {}
+    "dependencies": {
+        "@material-ui/core": "^4.10.2",
+        "@material-ui/icons": "^4.9.1",
+        "reakit": "^1.1.1",
+        "highlight.js": "10.1.1",
+        "react-grid-layout": "^0.18.3",
+        "@auth0/auth0-spa-js": "^1.8.1",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-transition-group": "^4.4.1"
+    }
 }

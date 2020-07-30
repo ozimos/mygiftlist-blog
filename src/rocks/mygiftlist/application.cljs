@@ -15,3 +15,5 @@
                           :response-middleware
                           (f.http-remote/wrap-fulcro-response
                             identity transit/read-handlers)})}}))
+(comment
+  (app/current-state SPA))

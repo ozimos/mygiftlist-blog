@@ -1,38 +1,48 @@
 {:paths   ["src" "resources"]
- :deps    {com.fulcrologic/fulcro    {:mvn/version "3.2.6"}
+ :deps    {com.fulcrologic/fulcro    {:mvn/version "3.2.11"}
            com.wsscode/pathom        {:mvn/version "2.2.31"}
-           edn-query-language/eql    {:mvn/version "0.0.9"}
+           edn-query-language/eql    {:mvn/version "1.0.0"}
            com.taoensso/timbre       {:mvn/version "4.11.0-alpha1"}
            com.fzakaria/slf4j-timbre {:mvn/version "0.3.19"}
            com.cognitect/transit-clj {:mvn/version "1.0.324"}
            ring/ring-core            {:mvn/version "1.8.1"}
+           com.cognitect/transit-cljs          {:mvn/version "0.8.264"}
            ring/ring-defaults        {:mvn/version "0.3.2"}
            bk/ring-gzip              {:mvn/version "0.3.0"}
            com.auth0/java-jwt        {:mvn/version "3.10.3"}
-           com.auth0/jwks-rsa        {:mvn/version "0.11.0"}
+           com.wsscode/async                   {:mvn/version "1.0.11"}
+           com.auth0/jwks-rsa        {:mvn/version "0.12.0"}
            integrant                 {:mvn/version "0.8.0"}
-           seancorfield/next.jdbc    {:mvn/version "1.0.424"}
-           honeysql                  {:mvn/version "0.9.10"}
+           seancorfield/next.jdbc    {:mvn/version "1.1.569"}
+           org.clojure/core.async              {:mvn/version "1.2.603"}
+           honeysql                  {:mvn/version "1.0.444"}
+           com.fulcrologic/guardrails {:mvn/version "0.0.12"}
+           org.clojure/clojurescript           {:mvn/version "1.10.773"}
+           clj-commons/pushy             {:mvn/version "0.3.10"}
            nilenso/honeysql-postgres {:mvn/version "0.2.6"}
            org.postgresql/postgresql {:mvn/version "42.2.14"}
            hikari-cp                 {:mvn/version "2.12.0"}
+           com.github.mrebbinghaus/fulcro-material-ui-wrapper {:mvn/version "0.4.0"}
            aero                      {:mvn/version "1.1.6"}
            http-kit                  {:mvn/version "2.4.0-alpha6"}}
- :aliases {:dev       {:extra-paths ["dev"]
-                       :jvm-opts    ["-Dtrace"]
+ :aliases {:dev       {:extra-paths ["dev" "workspaces" "test"]
+                       :jvm-opts    ["-Dtrace"  "-Dguardrails.enabled=true" "-XX:-OmitStackTraceInFastThrow"]
                        :extra-deps  {org.clojure/tools.namespace         {:mvn/version "1.0.0"}
-                                     org.clojure/clojurescript           {:mvn/version "1.10.764"}
                                      com.fulcrologic/semantic-ui-wrapper {:mvn/version "1.0.1"}
-                                     org.clojure/core.async              {:mvn/version "1.2.603"}
-                                     com.cognitect/transit-cljs          {:mvn/version "0.8.264"}
-                                     com.wsscode/async                   {:mvn/version "1.0.8"}
-                                     clj-commons/pushy                   {:mvn/version "0.3.10"}
-                                     thheller/shadow-cljs                {:mvn/version "2.9.6"}
-                                     binaryage/devtools                  {:mvn/version "1.0.0"}
+                                     expound                     {:mvn/version "0.8.4"}
+                                     com.github.awkay/workspaces {:mvn/version "1.0.1"}
+                                     thheller/shadow-cljs                {:mvn/version "2.10.15"}
+                                     com.taoensso/tufte                                 {:mvn/version "2.1.0"}
+                                     binaryage/devtools                 {:mvn/version "1.0.0"}
+                                     lilactown/punk-adapter-web {:mvn/version "0.0.10"}
                                      integrant/repl                      {:mvn/version "0.3.1"}}}
            :test      {:extra-paths ["test"]
                        :extra-deps  {com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
-                                                                :sha     "f7ef16dc3b8332b0d77bc0274578ad5270fbfedd"}}}
-           :run-tests {:main-opts ["-m" "cognitect.test-runner"]}
-           :outdated  {:extra-deps {olical/depot {:mvn/version "1.8.4"}}
+                                                                :sha     "f7ef16dc3b8332b0d77bc0274578ad5270fbfedd"}
+                                     lambdaisland/kaocha {:mvn/version "1.0.632"}}}
+           :devopts {:jvm-opts    ["-Dtrace" "-Dguardrails.enabled=true"]}
+
+           :cogni-tests {:main-opts ["-m" "cognitect.test-runner"]}
+           :kaocha-tests {:main-opts ["-m" "kaocha.runner"]}
+           :outdated  {:extra-deps {olical/depot {:mvn/version "2.0.1"}}
                        :main-opts  ["-m" "depot.outdated.main"]}}}

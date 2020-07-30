@@ -55,3 +55,5 @@
                                              :email email})])))
         (comp/transact! SPA
           [(routing/route-to {:path (dr/path-to ui.root/LoginForm)})])))))
+(comment
+  (go (<! (auth/create-auth0-client!))))

@@ -1,20 +1,45 @@
-{:deps {:aliases [:dev :calva-shadow]}
+{:deps {:aliases [:dev]}
  :nrepl {}
- :dev-http {8080 "resources/public/"}
+ :dev-http {8080 {:push-state/index "dev.html" :root  "resources/public/"}
+            8023 {:push-state/index "workspaces.html" :root  "resources/public/"}}
  :builds {:dev {:target     :browser
-                :output-dir "resources/public/js"
-                :asset-path "/js"
+                :output-dir "resources/public/js/dev"
+                :asset-path "/js/dev"
 
                 :modules    {:main {:entries [rocks.mygiftlist.client]
                                     :init-fn rocks.mygiftlist.client/init}}
 
+                :dev        {:compiler-options
+                             {:external-config {:guardrails {}}
+                              :warnings        {:redef false}}}
                 :closure-defines
                 {rocks.mygiftlist.config/AUTH0_CLIENT_ID "zWZcog17A7dzUZi23gnDayj4hWRDGubj"
                  rocks.mygiftlist.config/AUTH0_DOMAIN "dev-0sl7icpa.auth0.com"
                  rocks.mygiftlist.config/AUTH0_AUDIENCE "https://api.yum-nexus.com"
                  rocks.mygiftlist.config/AUTH0_CONNECTION "Username-Password-Authentication"}
 
-                :devtools   {:watch-dir "resources/public"
+                :devtools   {:watch-dir "resources/public/js/dev"
                              :after-load rocks.mygiftlist.client/refresh
                              :preloads [com.fulcrologic.fulcro.inspect.preload
-                                        rocks.mygiftlist.development-preload]}}}}
+                                        punk.adapter.web.preload
+                                        rocks.mygiftlist.development-preload]}}
+
+          :test       {:target           :browser-test
+                       :test-dir         "resources/public/js/test"
+                       :ns-regexp        "-test$"
+                       ;; required for mocking to work
+                       :compiler-options {:static-fns      false
+                                          :external-config {:guardrails {}}}
+                       :devtools         {:http-port          8022
+                                          :http-root          "resources/public/js/test"}}
+
+          :ci-tests   {:target           :karma
+                       :js-options       {:js-provider :shadow}
+                       :compiler-options {:static-fns false} ; required for mocking to work
+                       :output-to        "target/ci.js"
+                       :ns-regexp        "-test$"}
+          :workspaces {:target     nubank.workspaces.shadow-cljs.target
+                       :ns-regexp  "-(test|ws)$"
+                       :output-dir "resources/public/js/workspaces"
+                       :asset-path "/js/workspaces"
+                       :preloads           [com.fulcrologic.fulcro.inspect.preload]}}}

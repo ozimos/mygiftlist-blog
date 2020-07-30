@@ -1,7 +1,7 @@
 (ns rocks.mygiftlist.ui.gift-list
   (:require
    [com.fulcrologic.fulcro.algorithms.form-state :as fs]
-   [com.fulcrologic.fulcro.algorithms.merge :as merge]
+   [com.fulcrologic.fulcro.algorithms.merge :as mrg]
    [com.fulcrologic.fulcro.components :as comp :refer [defsc]]
    [com.fulcrologic.fulcro.dom :as dom]
    [com.fulcrologic.fulcro.mutations :as m]
@@ -69,7 +69,7 @@
   (dom/div {}
     (ui-gift-list-form
       (comp/computed gift-list-form
-        {:reset-form! #(merge/merge-component! this GiftListFormPanel
+        {:reset-form! #(mrg/merge-component! this GiftListFormPanel
                          {:ui/gift-list-form
                           (pristine-gift-list-form-state)})}))))
 

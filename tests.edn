@@ -1,0 +1,9 @@
+#kaocha/v1
+ {:tests    [{:id           :unit
+              :ns-patterns  ["-test$"]
+              :test-paths   ["test/rocks/mygiftlist"]
+              :skip-meta    [:integration]
+              :source-paths ["src/rocks/mygiftlist"]}]
+  :plugins  [:kaocha.plugin/randomize
+             :kaocha.plugin/filter
+             :kaocha.plugin/capture-output]}
